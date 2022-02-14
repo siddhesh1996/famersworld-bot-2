@@ -113,7 +113,7 @@
                         const seconds = +timeToEndArr[2];
                         console.log('Inside if block', seconds);
                         if (hour === 0 && min === 0 && seconds <= 20) {
-                            await new Promise((res) => setTimeout(res, seconds));
+                            await new Promise((res) => setTimeout(res, seconds * 1000));
                             // buttonMine.click();
                             console.log('Mine click!!');
                             await new Promise((res) =>
