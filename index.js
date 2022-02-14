@@ -107,15 +107,19 @@
                     const sawValue = eval(document.querySelector('.info-title-level').innerText);
 
                     if (![...buttonMine.classList].includes("disabled") && sawValue === 1) {
-                        const seconds = +timeToEnd.split(':')[2];
-                        if (seconds <= 20) {
+                        const timeToEndArr = timeToEnd.split(':');
+                        const hour = +timeToEndArr[0];
+                        const min = +timeToEndArr[1];
+                        const seconds = +timeToEndArr[2];
+                        console.log('Inside if block', seconds);
+                        if (hour === 0 && min === 0 && seconds <= 20) {
                             await new Promise((res) => setTimeout(res, seconds));
-                            buttonMine.click();
+                            // buttonMine.click();
+                            console.log('Mine click!!');
+                            await new Promise((res) =>
+                                setTimeout(res, random(...delayAfterMine))
+                            );
                         }
-
-                        await new Promise((res) =>
-                            setTimeout(res, random(...delayAfterMine))
-                        );
 
                         // If map with mining
                         if (mapId === 0) {
@@ -142,6 +146,8 @@
                                 }
                             }
                         }
+                    } else {
+                        console.log('Mine button not clicked!!!');
                     }
                 }
 
